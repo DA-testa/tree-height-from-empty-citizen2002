@@ -1,27 +1,38 @@
-# python3
-
 import sys
 import threading
 import numpy
 
-
 def compute_height(n, parents):
-    # Write this function
-    max_height = 0
-    # Your code here
-    return max_height
 
+    max_height = 0
+
+    node = np.array(list(map(int,parents.split())))
+    currentNode = np.where(node==-1)[0][0]
+    parentNodes = [-1]
+    visited = [-1]
+    def first_un_child(childAr,visitAr):
+        for a in childAr:
+            if a not in visitAr:
+                return a
+        return 0
 
 def main():
-    # implement input form keyboard and from files
+    impMethod = input()
+
+    if "F" in impMethod:
+        fileName = input()
+        if "a" in fileName:
+            return
+        with open("./test/" + fileName, "r") as f:
+            nodeCount = int(f.readline())
+            node = f.readline()
     
-    # let user input file name to use, don't allow file names with letter a
-    # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-    # call the function and output it's result
-    pass
+    elif "I" in impMethod:
+        nodeCount = input()
+        node = input()
+
+    height = compute_height(nodeCount,node)
+    print(height)
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
